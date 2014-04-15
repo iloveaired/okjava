@@ -1,4 +1,4 @@
-package com.okdevtv.spring;
+package com.okdevtv.mvc;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -22,7 +22,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -31,10 +31,30 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
-		
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
 	}
 	
+	@RequestMapping(value = "/home2.do", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("Time", formattedDate );
+		
+		return "home2";
+	}
+
+	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
+	public String test(Locale locale, Model model) {
+		model.addAttribute("now", "Fine killing liberty");
+		return "test";
+	}
+
+
 }
